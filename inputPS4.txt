@@ -1,0 +1,21 @@
+a / b / 3
+a / c / 5
+a / d / 2
+b / e / 11
+b / f / 12
+c / f / 7
+d / f / 8
+d / g / 5
+e / h / 3
+e / f / 3
+f / h / 7
+f / i / 5
+f / k / 4
+f / g / 4
+g / k / 5
+h / j / 2
+i / j / 3
+k / j / 6
+Harsh’s House: a
+Pharmacy 1: j
+Pharmacy 2: h
