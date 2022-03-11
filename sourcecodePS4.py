@@ -50,9 +50,11 @@ src = input_file.read()
 
 # Data Extraction from Input File
 pattern01 = "([a-z])\s/\s([a-z])\s/\s(\d+)"
-pattern02 = "\S:\s([a-z])"
+pattern02 = "Harsh\Ss House:\s([a-z])"
+pattern03 = "Pharmacy\s(\d+):\s([a-z])"
 details01 = re.findall(pattern01, src)
 details02 = re.findall(pattern02, src)
+details03 = re.findall(pattern03, src)
 input_file.close()
 
 # storing the edges and nodes details from the input file
@@ -67,8 +69,7 @@ for x,y,z in details01:
         
 # storing harsh house, pharmacy 1 and pharmacy 2 details
 harsh_house = ord(details02[0])-96
-pharmacy01 = ord(details02[1])-96
-pharmacy02 = ord(details02[2])-96
+pharmacy_data = {k: v for k,v in details03}
 
 # executing the algorithm
 containment_zone, trace = find_pharmacy(nodes, edges, harsh_house)
@@ -82,12 +83,9 @@ for k,v in trace.items():
 # generating the output file
 output_file = open("outputPS4.txt","w")
 
-if(final_containment_zone[chr(pharmacy01+96)] < final_containment_zone[chr(pharmacy02+96)]):
-    safer_pharmacy = chr(pharmacy01+96)
-    safer_pharmacy_no = "Pharmacy 1"
-else:
-    safer_pharmacy = chr(pharmacy02+96)
-    safer_pharmacy_no = "Pharmacy 2"
+safer_pharmacy = pharmacy_data[min(pharmacy_data, key=pharmacy_data.get)]
+safer_pharmacy_no = "Pharmacy " + str(min(pharmacy_data, key=pharmacy_data.get))
+
 path_to_follow = final_trace[safer_pharmacy]
 total_containment_zones = str(int(final_containment_zone[safer_pharmacy]))
 
